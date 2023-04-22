@@ -1,35 +1,147 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>2d ziz</title>
+    <title>2D Driving Game</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
       #map {
         height: 100%;
       }
-      /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
         margin: 0;
         padding: 0;
       }
+      #controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 18px;
+      }
+      #controls .button-row {
+        display: flex;
+        justify-content: center;
+      }
+      #version-overlay {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 5px;
+        border-radius: 5px;
+      }
     </style>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
   </head>
   <body>
     <div id="map"></div>
+    <div id="controls">
+      <button id="btn-up">↑</button>
+      <div class="button-row">
+        <button id="btn-left">←</button>
+        <button id="btn-right">→</button>
+      </div>
+      <button id="btn-down">↓</button>
+    </div>
+    <div id="version-overlay">Version: 1.015</div>
+    <script src="config.js"></script>
     <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 36.1699, lng: -115.1398},
-          zoom: 8
-        });
+      const KEY_CODES = {
+        LEFT: 37,
+        UP: 38,
+        RIGHT: 39,
+        DOWN: 40
+      };
+
+      let vehicle = {
+        x: 0,
+        y: 0,
+        speed: 1,
+        position: [ -115.1398, 36.1699 ],
+      };
+
+      function createVehicleMarker() {
+        const vehicleMarkerEl = document.createElement('div');
+        vehicleMarkerEl.style.width = '100px';
+        vehicleMarkerEl.style.height = '100px';
+        vehicleMarkerEl.style.backgroundColor = 'red';
+        vehicleMarkerEl.style.borderRadius = '50%';
+
+        return new mapboxgl.Marker(vehicleMarkerEl)
+          .setLngLat(vehicle.position);
       }
+
+      function moveVehicle(keyCode) {
+        const bearing = map.getBearing();
+        let dx = 0;
+        let dy = 0;
+
+        switch (keyCode) {
+          case KEY_CODES.LEFT:
+            dx = -vehicle.speed;
+            break;
+          case KEY_CODES.UP:
+            dy = vehicle.speed;
+            break;
+          case KEY_CODES.RIGHT:
+            dx = vehicle.speed;
+            break;
+          case KEY_CODES.DOWN:
+            dy = -vehicle.speed;
+            break;
+          default:
+            break;
+        }
+
+        const bearingRad = (bearing * Math.PI) / 180;
+        const rotatedDx = dx * Math.cos(bearingRad) - dy * Math.sin(bearingRad);
+        const rotatedDy = dx * Math.sin(bearingRad) + dy * Math.cos(bearingRad);
+
+
+
+
+
+        const lng = vehicle.position[0] + rotatedDx * 0.0001;
+        const lat = vehicle.position[1] + rotatedDy * 0.0001;
+
+        map.setCenter([lng, lat]);
+        vehicle.position = [lng, lat];
+        vehicleMarker.setLngLat(vehicle.position);
+      }
+
+      mapboxgl.accessToken = mapboxAccessToken;
+      const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: vehicle.position,
+        zoom: 15
+      });
+
+      const vehicleMarker = createVehicleMarker();
+
+      map.on('load', () => {
+        vehicleMarker.addTo(map);
+
+        document.addEventListener("keydown", (event) => {
+          if (Object.values(KEY_CODES).includes(event.keyCode)) {
+            event.preventDefault();
+            moveVehicle(event.keyCode);
+          }
+        });
+
+        document.getElementById("btn-up").addEventListener("click", () => moveVehicle(KEY_CODES.UP));
+        document.getElementById("btn-left").addEventListener("click", () => moveVehicle(KEY_CODES.LEFT));
+        document.getElementById("btn-right").addEventListener("click", () => moveVehicle(KEY_CODES.RIGHT));
+        document.getElementById("btn-down").addEventListener("click", () => moveVehicle(KEY_CODES.DOWN));
+      });
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=xxxxxxxxxx&callback=initMap"
-    async defer></script>
   </body>
 </html>
