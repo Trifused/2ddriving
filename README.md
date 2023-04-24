@@ -3,6 +3,14 @@ A 2D Driving app
 
 Live here: https://2dziz.com
 
-I tried a 3d driving demo from fram sythesi on google maps, this was fun but to bulky, so this projecect will simplify this into a fun app for driving and racing.
+I tried a 3d driving demo from frame sythesis on google maps, this was fun but I had some Ideas, so this projecect will simplify this into a fun app for driving and racing.
+
+More Speed
+Off road detection (buidings, water, ramps,....)
+lock in road
+races
+tracks
+muli-player
+
 
 https://framesynthesis.com/drivingsimulator/maps/
