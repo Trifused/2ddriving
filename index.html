@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>2D Driving Game</title>
+    <title>2D ZiZ Driving</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <link href='styles.css' rel='stylesheet' />
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="icon" href="/2dziz-app/favicon.ico" type="image/x-icon">
-
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
   </head>
   <body>
+    <!-- Div container for the Mapbox map -->
     <div id="map"></div>
+
+    <!-- Control buttons for moving the vehicle on the map -->
     <div id="controls">
       <button id="btn-up">↑</button>
       <div class="button-row">
@@ -20,8 +22,23 @@
       </div>
       <button id="btn-down">↓</button>
     </div>
-    <div id="version-overlay">2D Driving VN1.05</div>
-    <script src="/2dziz-app/config.js"></script>
-    <script src="/2dziz-app/main.js"></script>
+
+    <!-- Overlay to show the version of the application (initially empty) -->
+    <div id="version-overlay" style="position: absolute; top: 10px; left: 10px; background-color: rgba(255, 255, 255, 0.8); padding: 5px; border-radius: 5px; font-size: 16px;">
+      2D ZiZ V1.28<!-- Version will be dynamically updated here -->
+    </div>
+
+    <!-- Speed display container positioned below the version label -->
+    <div id="speed-display" style="position: absolute; top: 50px; left: 10px; background-color: rgba(255, 255, 255, 0.8); padding: 5px; border-radius: 5px; font-size: 16px;">
+      Speed: 0
+    </div>
+
+    <!-- Include configuration file for Mapbox access token or other settings -->
+    <script src="config.js"></script>
+
+    <!-- Load the main JavaScript file with a timestamp to prevent caching -->
+    <script>
+      document.write('<script src="main.js?v=' + Date.now() + '"><\/script>');
+    </script>
   </body>
 </html>
