@@ -1,1 +1,1 @@
-const mapboxAccessToken = 'pk.eyJ1IjoidHJpZnVzZWQiLCJhIjoiY2xncmliaGszMDA3cDNwb2M0dXp1ajQyMiJ9.KJb6-IhgawbRetbQ3tRhxg';
+const mapboxAccessToken = '----- YOUR MAP ACCESS Token ------';
