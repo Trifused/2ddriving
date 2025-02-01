@@ -1,45 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>2D ZiZ Driving</title>
-    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link href="styles.css" rel="stylesheet" />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet" />
-    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+
+    <!-- External CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <!-- Load Joystick Library (NippleJS) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.9.0/nipplejs.min.js"></script>
+
+    <!-- Load Mapbox GL JS -->  
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.js"></script>
   </head>
+
   <body>
-    <!-- Div container for the Mapbox map -->
+    <!-- Map container -->
     <div id="map"></div>
 
-    <!-- Control buttons for moving the vehicle on the map -->
-    <div id="controls">
-      <button id="btn-up">↑</button>
-      <div class="button-row">
-        <button id="btn-left">←</button>
-        <button id="btn-right">→</button>
-      </div>
-      <button id="btn-down">↓</button>
-    </div>
+    <!-- Joystick container (Right Side) -->
+    <div id="joystick-container" ></div>
 
-    <!-- Overlay to show the version of the application -->
-    <div id="version-overlay" style="position: absolute; top: 10px; left: 10px; background-color: rgba(255, 255, 255, 0.8); padding: 5px; border-radius: 5px; font-size: 16px;">
-      <!-- Initial content will be replaced dynamically -->
-      Loading version...
-    </div>
+    <!-- Brake Button (Left Side) -->
+    <button id="brake-button">B</button>
 
-    <!-- Speed display container positioned below the version label -->
-    <div id="speed-display" style="position: absolute; top: 50px; left: 10px; background-color: rgba(255, 255, 255, 0.8); padding: 5px; border-radius: 5px; font-size: 16px;">
-      Speed: 0
-    </div>
+    <!-- Overlay showing the version -->
+    <div id="version-overlay">Loading version...</div>
+
+    <!-- Speed display container -->
+    <div id="speed-display">Speed: 0</div>
 
     <!-- Include configuration file for Mapbox access token or other settings -->
-    <script src="config.js"></script>
+    <script src="js/config.js"></script>
 
     <!-- Load the main JavaScript file with a timestamp to prevent caching -->
     <script>
-      document.write('<script src="main.js?v=' + Date.now() + '"><\/script>');
+      document.write('<script src="js/main.js?v=' + Date.now() + '"><\/script>');
     </script>
+
+
+    </script>
+
   </body>
 </html>

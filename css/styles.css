@@ -1,0 +1,134 @@
+/* Full-screen map container */
+#map {
+  height: 100%;
+  width: 100%;
+  background-color: #e5e5e5;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+/* Joystick (RIGHT SIDE) */
+#joystick-container {
+  width: 150px;
+  height: 150px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px; /* Forces joystick to the right */
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  z-index: 1000;
+}
+
+
+/* Brake button (LEFT SIDE) */
+#brake-button {
+  width: 80px;
+  height: 80px;
+  position: fixed;
+  bottom: 30px;
+  left: 20px; /* Forces button to the left */
+  background-color: red;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+
+/* Controls for map interaction */
+#controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+  gap: 10px;
+}
+
+#controls .button-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#controls button {
+  font-size: 24px;
+  width: 70px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#controls button:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  transform: scale(1.05);
+}
+
+#controls button:active {
+  background-color: rgba(0, 0, 0, 1);
+  transform: scale(0.95);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  #controls button {
+    width: 60px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+/* Shared styling for overlays (version and speed display) */
+#version-overlay,
+#speed-display {
+  position: fixed;
+  left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#version-overlay {
+  top: 10px;
+}
+
+#speed-display {
+  top: 50px;
+}
+
+/* Map hover effect */
+#map:hover {
+  cursor: grab;
+  filter: brightness(0.95);
+}
+
+/* Fix potential conflicts */
+#joystick-container, #brake-button {
+  touch-action: none; /* Prevents unwanted touch events */
+  user-select: none;
+}
