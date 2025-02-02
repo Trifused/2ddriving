@@ -2,7 +2,7 @@
 
 🔗 **Live Here:** [2D Driving App](https://2dziz.com)  
 
-Inspired by **Frame Synthesis's 3D driving demo**, this project reimagines the experience in a streamlined **2D format**. With the help of **ChatGPT, AI tools, and countless hours of effort (not to mention a few headaches! 😅),** this app brings an accessible and fun driving experience—perfect for quick challenges or competitive play.  
+Inspired by **Frame Synthesis's 3D driving demo**, this project reimagines the experience in a streamlined **2D format**. With the help of **ChatGPT**, **Copilot**, **DeepSeek**,  AI tools, and countless hours of effort (not to mention a few headaches! 😅),** this app brings an accessible and fun driving experience.
 
 🛠 **Contributions are welcome!** Join us as we refine, expand, and improve the game.  
 
@@ -10,6 +10,7 @@ Inspired by **Frame Synthesis's 3D driving demo**, this project reimagines the e
 
 ## 🚀 **Latest Updates**
 ### ✅ **Recent Fixes & Enhancements**
+- **Simple Shooting** Added simple shooting logic
 - 🔄 **NippleJS Joystick Code Cleanup** → Improved touch controls for mobile users.
 - 🅱️ **On-Screen Brake Button Added** → Players can now stop instantly using an on-screen "B" button.
 - 🛠 **Optimized UI Layout** → Joystick and controls properly aligned across all devices.
