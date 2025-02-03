@@ -44,6 +44,24 @@ html, body {
   background-color: #808080; /* Grey */
 }
 
+/* Target Expload */
+@keyframes explode {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(2); opacity: 0.7; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.explosion {
+  width: 50px;
+  height: 50px;
+  background-color: orange;
+  border-radius: 50%;
+  position: absolute;
+  animation: explode 1s ease-out forwards;
+}
+
+
+
 
 /* Joystick (RIGHT SIDE) */
 #joystick-container {
